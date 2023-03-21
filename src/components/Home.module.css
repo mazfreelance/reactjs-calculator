@@ -52,7 +52,7 @@
 
 .btns {
     height: 530px;
-    width: 425px;
+    width: 435px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;

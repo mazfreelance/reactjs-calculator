@@ -8,25 +8,42 @@ function Home() {
     const [res, setRes] = useState("")
 
     const buttons = [
-        "C", "9", "/", "8", "7", "6", "*",
-        "5", "4", "3", "+", "2", "1", "0",
-        "-", ".", "Del", "="
+        "AC", "Del", "/100", "/", 
+        "7", "8", "9", "*", 
+        "4", "5", "6", "-", 
+        "1", "2", "3", "+", 
+        "0", "="
     ];
 
     const findval = () => {
+        // console.log('finval', res)
+        if(!res) {
+            alert("Please insert any number")
+            return
+        }
         let result = Function("return "+ res)()
         setRes(result.toString())
     }
 
     const handler = (arg) => {
         // console.log("🚀 ~ file: Home.js:22 ~ handler ~ arg:", arg)
-        if(arg == "C") setRes("")
+        if(arg == "AC") setRes("")
         else if(arg == "=") findval()
         else if(arg == "Del") {
             let n = res.length
             if(n>0) setRes(res.slice(0,n-1))
-        }
+        } 
+        // else if (arg == "%") {
+        //     let n = res.length
+        //     if(n>0) {
+        //     console.log("here % n", n)
+        //     console.log("here % value", res)
+        //     console.log("here % value slice", res.slice(2,1))
+        //     }
+        //     // setRes(res / 100)
+        // }
         else setRes(res.concat(arg))
+        // console.log('here', res)
     }
 
     return (
@@ -39,7 +56,7 @@ function Home() {
                 </div>
                 <div className={ classes.btns }>
                     {buttons.map((element, idx) => {
-                        return <Button handler={handler} value={element}/>
+                        return <Button key={idx} handler={handler} value={element}/>
                     })}
                 </div>
             </div>
